@@ -4,6 +4,9 @@ import express from "express";
 import {
   createProduct,
   getAllProducts,
+  getProduct,
+  updateProduct,
+  deleteProduct,
 } from "../controllers/productController.js";
 //we imported with {} because productController uses named export (export const ...)
 
@@ -13,8 +16,10 @@ const router = express.Router();
 
 //GET /api/products -> getAllProducts will run
 router.get("/", getAllProducts);
-
-//GET /api/products -> createProduct will run
+router.get("/:id", getProduct);
+//POST /api/products -> createProduct will run
 router.post("/", createProduct);
+router.put("/:id", updateProduct);
+router.delete("/:id", deleteProduct);
 
 export default router; // server.js imports this default export and mount
