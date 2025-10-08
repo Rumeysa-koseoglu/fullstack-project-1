@@ -44,9 +44,10 @@ export const getProduct = async (req, res) => {
 
   try {
     const product = await sql`
-    SELECT FROM product WHERE id=${id}
+    SELECT * FROM products WHERE id=${id}
     `;
 
+    console.log(product);
     res.status(200).json({ success: true, data: product[0] });
   } catch (error) {
     console.log("Error in getProduct function", error);
@@ -70,7 +71,7 @@ export const updateProduct = async (req, res) => {
       res.status(404).json({ success: false, message: "Product not found" });
     }
 
-    res.status(200).json({ success: true, data: updateProduct[0] });
+    res.status(200).json({ success: true, data: updatedProduct[0] });
   } catch (error) {
     console.log("Error in updateProduct function");
     res.status(500).json({ success: false, message: "Internal server error" });
