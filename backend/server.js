@@ -7,8 +7,11 @@ import cors from "cors"; // for CORS settings
 import dotenv from "dotenv"; // reads the .env file
 import productRoutes from "./routes/productRoutes.js"; // get product routes (default export)
 import { sql } from "../config/db.js";
+import { aj } from "./lib/arcjet.js";
 
+//load environment variables first (PORT DB credentials ARCJET_KEY etc.)
 dotenv.config(); //puts the contents of the .env into the process.env
+//Keep .env out of version control. Add `.env` to .gitignore.
 
 const app = express();
 const PORT = process.env.PORT || 3000; // if there is no PORT in .env, use 3000
@@ -19,6 +22,42 @@ app.use(express.json()); // converts incoming JSON body to req.body
 app.use(cors()); //cross-origin permissions
 app.use(helmet()); //helmet is a security middleware that helps you protect your app by setting various HTTP headers
 app.use(morgan("dev")); //log the requests in detail to the console
+
+// apply arcjet rate-limit to all routes
+app.use(async (req, res, next) => {
+  try {
+    const decision = await aj.protect(req, {
+      requested: 1, //sepecifies that each request consumes one token
+    });
+
+    //if arcjet decides to deny the request, return appropriate HTTP status
+    if (decision.isDenied()) {
+      if (decision.reason.isRateLimit()) {
+        res.status(429).json({ error: "Too many requests" });
+      } else if (decision.reason.isBot()) {
+        res.status(403).json({ error: "Bot access denied" });
+      } else {
+        res.status(403).json({ error: "Forbidden" });
+      }
+      return;
+    }
+
+    //check for spoofed bots
+    if (
+      decision.results.some(
+        (result) => result.reason.isBot() && result.reason.isSpoofed()
+      )
+    ) {
+      res.status(403).json({ error: "Spoofed bot detected" });
+    }
+
+    //if not denied, continue to the next middleware / route
+    next();
+  } catch (error) {
+    console.log("Arcjet error", error);
+    next(error);
+  }
+});
 
 //----------Rotue mount-----------
 //all routes in productRouters will be used with the base path "/api/products"
