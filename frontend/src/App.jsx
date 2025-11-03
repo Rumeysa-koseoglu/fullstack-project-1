@@ -4,7 +4,10 @@ import ProductPage from "../src/pages/ProductPage";
 import { Routes, Route } from "react-router-dom";
 function App() {
   return (
-    <div className="min-h-screen bg-base-200 transition-colors duration-300">
+    <div
+      className="min-h-screen bg-base-200 transition-colors duration-300"
+      data-theme="forest"
+    >
       <Navbar />
 
       <Routes>
