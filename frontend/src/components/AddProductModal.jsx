@@ -4,7 +4,11 @@ import { DollarSignIcon, ImageIcon, Package2Icon } from "lucide-react";
 
 function AddProductModal() {
   const { addProduct, formData, setFormData } = useProductStore();
-  return <div>AddProductModal</div>;
+  return (
+    <dialog id="add_product_modal" className="modal">
+      <div className="modal-box"></div>
+    </dialog>
+  );
 }
 
 export default AddProductModal;
