@@ -13,6 +13,8 @@ function AddProductModal() {
             X
           </button>
         </form>
+        {/* MODAL HEADER */}
+        <h3 className="font-bold text-xl mb-8">Add New Product</h3>
       </div>
     </dialog>
   );
