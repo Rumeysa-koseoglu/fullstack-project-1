@@ -40,6 +40,51 @@ function AddProductModal() {
                 />
               </div>
             </div>
+            {/* PRODUCT PRICE INPUT */}
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text text-base font-medium">Price</span>
+              </label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-base-content/50">
+                  <DollarSignIcon className="size-5" />
+                </div>
+                <input
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  placeholder="0.00"
+                  className="input input-bordered w-full pl-10 py-3 focus:input-primary transition-colors duration-200"
+                  value={formData.price}
+                  onChange={(e) =>
+                    setFormData({ ...formData, price: e.target.value })
+                  }
+                />
+              </div>
+            </div>
+
+            {/* PRODUCT IMAGE */}
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text text-base font-medium">
+                  Image URL
+                </span>
+              </label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-base-content/50">
+                  <ImageIcon className="size-5" />
+                </div>
+                <input
+                  type="text"
+                  placeholder="https://example.com/image.jpg"
+                  className="input input-bordered w-full pl-10 py-3 focus:input-primary transition-colors duration-200"
+                  value={formData.image}
+                  onChange={(e) =>
+                    setFormData({ ...formData, image: e.target.value })
+                  }
+                />
+              </div>
+            </div>
           </div>
         </form>
       </div>
