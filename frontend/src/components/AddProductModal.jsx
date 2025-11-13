@@ -1,9 +1,14 @@
 import React from "react";
 import { useProductStore } from "../store/useProductStore";
-import { DollarSignIcon, ImageIcon, Package2Icon } from "lucide-react";
+import {
+  DollarSignIcon,
+  ImageIcon,
+  Package2Icon,
+  PlusCircleIcon,
+} from "lucide-react";
 
 function AddProductModal() {
-  const { addProduct, formData, setFormData } = useProductStore();
+  const { addProduct, formData, setFormData, loading } = useProductStore();
   return (
     <dialog id="add_product_modal" className="modal">
       <div className="modal-box">
@@ -85,6 +90,29 @@ function AddProductModal() {
                 />
               </div>
             </div>
+          </div>
+
+          {/* MODAL ACTIONS */}
+          <div className="modal-action">
+            <form method="dialog">
+              <button className="btn btn-ghost">Cancel</button>
+            </form>
+            <button
+              type="submit"
+              className="btn btn-primary min-w-[120px]"
+              disabled={
+                !formData.name || !formData.price || !formData.image || loading
+              }
+            >
+              {loading ? (
+                <span className="loading loading-spinner loading-sm" />
+              ) : (
+                <>
+                  <PlusCircleIcon className="size-5 mr-2" />
+                  Add Product
+                </>
+              )}
+            </button>
           </div>
         </form>
       </div>
