@@ -11,6 +11,7 @@ export const useProductStore = create((set, get) => ({
   products: [], //we list all products here
   loading: false, // it will be true when we fetching data
   error: null, // its our store error message (if something goes wrong)
+  currentProduct: null,
 
   //form state
   formData: {
@@ -78,6 +79,23 @@ export const useProductStore = create((set, get) => ({
       console.log("Error in deleteProduct function", error);
       //we show error message when the function is fails
       toast.error("Something went wrong");
+    } finally {
+      set({ loading: false });
+    }
+  },
+
+  fetchProduct: async (id) => {
+    set({ loading: true });
+    try {
+      const response = await axios.get(`${BASE_URL}/api/products/${id}`);
+      set({
+        currentProduct: response.data.data,
+        formData: response.data.data, // prefill form with current product data
+        error: null,
+      });
+    } catch (error) {
+      console.log("Error in fetchProduct function", error);
+      set({ error: "Something went wrong", currentProduct: null });
     } finally {
       set({ loading: false });
     }
