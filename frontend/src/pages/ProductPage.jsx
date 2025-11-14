@@ -20,6 +20,14 @@ function ProductPage() {
     fetchProduct(id);
   }, [fetchProduct, id]);
 
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="loading loading-spinner loading-lg" />
+      </div>
+    );
+  }
+
   console.log(currentProduct);
 
   return <div>Product Page</div>;
