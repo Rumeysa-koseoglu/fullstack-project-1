@@ -84,6 +84,7 @@ export const useProductStore = create((set, get) => ({
     }
   },
 
+  //fetch a single product by ID
   fetchProduct: async (id) => {
     set({ loading: true });
     try {
@@ -96,6 +97,26 @@ export const useProductStore = create((set, get) => ({
     } catch (error) {
       console.log("Error in fetchProduct function", error);
       set({ error: "Something went wrong", currentProduct: null });
+    } finally {
+      set({ loading: false });
+    }
+  },
+
+  //update an existing product by ID
+  //this function sends the edited form data to the backend
+  updateProduct: async (id) => {
+    set({ loading: true });
+    try {
+      const { formData } = get(); //to get the current state of the store, we use get(); [from Zustand]
+      const response = await axios.put(
+        `${BASE_URL}/api/product/${id}`,
+        formData
+      );
+      set({ currentProduct: response.data.data });
+      toast.success("Product updated successfully");
+    } catch (error) {
+      toast.error("Something went wrong");
+      console.log("Error in updateProduct function", error);
     } finally {
       set({ loading: false });
     }
