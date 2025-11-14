@@ -1,6 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useProductStore } from "../store/useProductStore";
+import { useNavigate, useParams } from "react-router-dom";
 
 function ProductPage() {
+  const {
+    currentProduct,
+    formData,
+    setFormdata,
+    loading,
+    error,
+    fetchProduct,
+    updateProduct,
+    deleteProduct,
+  } = useProductStore();
+  const navigate = useNavigate();
+  const { id } = useParams();
+
+  useEffect(() => {
+    fetchProduct(id);
+  }, [fetchProduct, id]);
+
+  console.log(currentProduct);
+
   return <div>Product Page</div>;
 }
 
