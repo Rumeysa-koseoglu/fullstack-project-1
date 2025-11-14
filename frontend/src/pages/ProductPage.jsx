@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useProductStore } from "../store/useProductStore";
 import { useNavigate, useParams } from "react-router-dom";
+import { ArrowLeftIcon } from "lucide-react";
 
 function ProductPage() {
   const {
@@ -35,9 +36,14 @@ function ProductPage() {
     );
   }
 
-  console.log(currentProduct);
-
-  return <div>Product Page</div>;
+  return (
+    <div className="container mx-auto px-4 py-8 max-w-4xl">
+      <button onClick={() => navigate("/")} className="btn btn-ghost mb-8">
+        <ArrowLeftIcon className="size-4 mr-2" />
+        Back to Products
+      </button>
+    </div>
+  );
 }
 
 export default ProductPage;
