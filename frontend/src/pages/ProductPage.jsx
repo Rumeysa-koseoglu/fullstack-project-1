@@ -27,6 +27,13 @@ function ProductPage() {
       </div>
     );
   }
+  if (error) {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <div className="alert alert-error">{error}</div>
+      </div>
+    );
+  }
 
   console.log(currentProduct);
 
