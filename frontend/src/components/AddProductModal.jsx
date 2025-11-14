@@ -94,9 +94,15 @@ function AddProductModal() {
 
           {/* MODAL ACTIONS */}
           <div className="modal-action">
-            <form method="dialog">
-              <button className="btn btn-ghost">Cancel</button>
-            </form>
+            <button
+              type="button"
+              className="btn btn-ghost"
+              onClick={() =>
+                document.getElementById("add_product_modal").close()
+              }
+            >
+              Cancel
+            </button>
             <button
               type="submit"
               className="btn btn-primary min-w-[120px]"
