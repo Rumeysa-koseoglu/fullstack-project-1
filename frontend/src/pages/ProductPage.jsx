@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useProductStore } from "../store/useProductStore";
 import { useNavigate, useParams } from "react-router-dom";
-import { ArrowLeftIcon } from "lucide-react";
+import { ArrowLeftIcon, TrashIcon } from "lucide-react";
 
 function ProductPage() {
   const {
@@ -119,6 +119,18 @@ function ProductPage() {
                     setFormData({ ...formData, image: e.target.value })
                   }
                 />
+              </div>
+
+              {/* FORM ACTIONS */}
+              <div className="flex justify-between mt-8">
+                <button
+                  type="button"
+                  onClick={handleDelete}
+                  className="btn btn-error"
+                >
+                  <TrashIcon className="size-4 mr-2" />
+                  Delete Product
+                </button>
               </div>
             </form>
           </div>
