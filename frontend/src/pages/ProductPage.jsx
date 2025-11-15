@@ -64,7 +64,16 @@ function ProductPage() {
               updateProduct(id);
             }}
             className="space-y-6"
-          ></form>
+          >
+            {/* PRODUCT NAME */}
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text text-base font-medium">
+                  Product Name
+                </span>
+              </label>
+            </div>
+          </form>
         </div>
       </div>
     </div>
