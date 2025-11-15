@@ -12,7 +12,7 @@ function HomePage() {
   }, [fetchProducts]);
 
   return (
-    <main className="mx-auto px-4 py-8 max-6-xl">
+    <main className="max-w-6xl mx-auto px-4 py-8">
       <div className="flex justify-between items-center mb-8">
         <button
           className="btn btn-primary"
