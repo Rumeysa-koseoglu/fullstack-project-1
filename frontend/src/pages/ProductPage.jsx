@@ -88,6 +88,17 @@ function ProductPage() {
               <label className="label">
                 <span className="label-text text-base font-medium">Price</span>
               </label>
+              <input
+                type="number"
+                min="0"
+                step="0.01"
+                placeholder="0.00"
+                className="input input-bordered w-full"
+                value={formData.price}
+                onChange={(e) =>
+                  setFormData({ ...formData, price: e.target.value })
+                }
+              />
             </div>
           </form>
         </div>
