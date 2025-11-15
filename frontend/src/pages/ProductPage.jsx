@@ -108,6 +108,15 @@ function ProductPage() {
                   Image URL
                 </span>
               </label>
+              <input
+                type="text"
+                placeholder="https://example.com/image.jpg"
+                className="input input-bordered w-full"
+                value={formData.image}
+                onChange={(e) =>
+                  setFormData({ ...formData, image: e.target.value })
+                }
+              />
             </div>
           </form>
         </div>
