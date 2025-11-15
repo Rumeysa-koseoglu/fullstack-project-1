@@ -52,6 +52,21 @@ function ProductPage() {
           className="size-full object-cover"
         />
       </div>
+
+      {/* PRODUCT FORM */}
+      <div className="card bg-base-100 shadow-lg">
+        <div className="card-body">
+          <h2 className="card-title text-2xl mb-6">Edit Product</h2>
+
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              updateProduct(id);
+            }}
+            className="space-y-6"
+          ></form>
+        </div>
+      </div>
     </div>
   );
 }
