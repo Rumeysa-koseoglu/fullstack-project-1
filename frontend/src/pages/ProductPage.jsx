@@ -82,6 +82,13 @@ function ProductPage() {
                 }
               />
             </div>
+
+            {/* PRODUCT PRICE */}
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text text-base font-medium">Price</span>
+              </label>
+            </div>
           </form>
         </div>
       </div>
