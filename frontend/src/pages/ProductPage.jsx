@@ -43,82 +43,85 @@ function ProductPage() {
         Back to Products
       </button>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
-      {/* PRODUCT IMAGE */}
-      <div className="rounded-lg overflow-hidden shadow-lg bg-base-100">
-        <img
-          src={currentProduct?.image}
-          alt={currentProduct?.name}
-          className="size-full object-cover"
-        />
-      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 ">
+        {/* PRODUCT IMAGE */}
+        <div className="rounded-lg overflow-hidden shadow-lg bg-base-100">
+          <img
+            src={currentProduct?.image}
+            alt={currentProduct?.name}
+            className="size-full object-cover"
+          />
+        </div>
 
-      {/* PRODUCT FORM */}
-      <div className="card bg-base-100 shadow-lg">
-        <div className="card-body">
-          <h2 className="card-title text-2xl mb-6">Edit Product</h2>
+        {/* PRODUCT FORM */}
+        <div className="card bg-base-100 shadow-lg">
+          <div className="card-body">
+            <h2 className="card-title text-2xl mb-6">Edit Product</h2>
 
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              updateProduct(id);
-            }}
-            className="space-y-6"
-          >
-            {/* PRODUCT NAME */}
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text text-base font-medium">
-                  Product Name
-                </span>
-              </label>
-              <input
-                type="text"
-                placeholder="Enter product name"
-                className="input input-bordered w-full"
-                value={formData.name}
-                onChange={(e) =>
-                  setFormData({ ...formData, name: e.target.value })
-                }
-              />
-            </div>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                updateProduct(id);
+              }}
+              className="space-y-6"
+            >
+              {/* PRODUCT NAME */}
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text text-base font-medium">
+                    Product Name
+                  </span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Enter product name"
+                  className="input input-bordered w-full"
+                  value={formData.name}
+                  onChange={(e) =>
+                    setFormData({ ...formData, name: e.target.value })
+                  }
+                />
+              </div>
 
-            {/* PRODUCT PRICE */}
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text text-base font-medium">Price</span>
-              </label>
-              <input
-                type="number"
-                min="0"
-                step="0.01"
-                placeholder="0.00"
-                className="input input-bordered w-full"
-                value={formData.price}
-                onChange={(e) =>
-                  setFormData({ ...formData, price: e.target.value })
-                }
-              />
-            </div>
+              {/* PRODUCT PRICE */}
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text text-base font-medium">
+                    Price
+                  </span>
+                </label>
+                <input
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  placeholder="0.00"
+                  className="input input-bordered w-full"
+                  value={formData.price}
+                  onChange={(e) =>
+                    setFormData({ ...formData, price: e.target.value })
+                  }
+                />
+              </div>
 
-            {/* PRODUCT IMAGE URL */}
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text text-base font-medium">
-                  Image URL
-                </span>
-              </label>
-              <input
-                type="text"
-                placeholder="https://example.com/image.jpg"
-                className="input input-bordered w-full"
-                value={formData.image}
-                onChange={(e) =>
-                  setFormData({ ...formData, image: e.target.value })
-                }
-              />
-            </div>
-          </form>
+              {/* PRODUCT IMAGE URL */}
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text text-base font-medium">
+                    Image URL
+                  </span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="https://example.com/image.jpg"
+                  className="input input-bordered w-full"
+                  value={formData.image}
+                  onChange={(e) =>
+                    setFormData({ ...formData, image: e.target.value })
+                  }
+                />
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
