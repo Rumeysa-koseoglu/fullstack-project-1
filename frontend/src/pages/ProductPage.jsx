@@ -100,6 +100,15 @@ function ProductPage() {
                 }
               />
             </div>
+
+            {/* PRODUCT IMAGE URL */}
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text text-base font-medium">
+                  Image URL
+                </span>
+              </label>
+            </div>
           </form>
         </div>
       </div>
