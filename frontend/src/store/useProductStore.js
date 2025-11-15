@@ -109,7 +109,7 @@ export const useProductStore = create((set, get) => ({
     try {
       const { formData } = get(); //to get the current state of the store, we use get(); [from Zustand]
       const response = await axios.put(
-        `${BASE_URL}/api/product/${id}`,
+        `${BASE_URL}/api/products/${id}`,
         formData
       );
       set({ currentProduct: response.data.data });
