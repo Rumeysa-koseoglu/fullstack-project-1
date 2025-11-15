@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useProductStore } from "../store/useProductStore";
 import { useNavigate, useParams } from "react-router-dom";
-import { ArrowLeftIcon, TrashIcon } from "lucide-react";
+import { ArrowLeftIcon, SaveIcon, TrashIcon } from "lucide-react";
 
 function ProductPage() {
   const {
@@ -130,6 +130,26 @@ function ProductPage() {
                 >
                   <TrashIcon className="size-4 mr-2" />
                   Delete Product
+                </button>
+
+                <button
+                  type="submit"
+                  className="btn btn-primary"
+                  disabled={
+                    loading ||
+                    !formData.name ||
+                    !formData.price ||
+                    !formData.image
+                  }
+                >
+                  {loading ? (
+                    <span className="loading loading-spinner loading-sm" />
+                  ) : (
+                    <>
+                      <SaveIcon className="size-4 mr-2" />
+                      Save Changes
+                    </>
+                  )}
                 </button>
               </div>
             </form>
