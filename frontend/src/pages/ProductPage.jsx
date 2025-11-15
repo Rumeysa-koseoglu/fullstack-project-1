@@ -21,6 +21,11 @@ function ProductPage() {
     fetchProduct(id);
   }, [fetchProduct, id]);
 
+  const handleDelete = async () => {
+    await deleteProduct(id);
+    navigate("/");
+  };
+
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
