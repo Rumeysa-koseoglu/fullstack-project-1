@@ -7,7 +7,7 @@ function ProductPage() {
   const {
     currentProduct,
     formData,
-    setFormdata,
+    setFormData,
     loading,
     error,
     fetchProduct,
@@ -72,6 +72,15 @@ function ProductPage() {
                   Product Name
                 </span>
               </label>
+              <input
+                type="text"
+                placeholder="Enter product name"
+                className="input input-bordered w-full"
+                value={formData.name}
+                onChange={(e) =>
+                  setFormData({ ...formData, name: e.target.value })
+                }
+              />
             </div>
           </form>
         </div>
