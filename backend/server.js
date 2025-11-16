@@ -6,7 +6,7 @@ import morgan from "morgan"; // to log HTTP  request
 import cors from "cors"; // for CORS settings
 import dotenv from "dotenv"; // reads the .env file
 import productRoutes from "./routes/productRoutes.js"; // get product routes (default export)
-import { sql } from "../config/db.js";
+import { sql } from "./config/db.js";
 import { aj } from "./lib/arcjet.js";
 
 //load environment variables first (PORT DB credentials ARCJET_KEY etc.)
