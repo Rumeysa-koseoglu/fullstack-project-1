@@ -22,7 +22,12 @@ const __dirname = path.resolve();
 //those are works before all the routes work (order is important)
 app.use(express.json()); // converts incoming JSON body to req.body
 app.use(cors()); //cross-origin permissions
-app.use(helmet()); //helmet is a security middleware that helps you protect your app by setting various HTTP headers
+app.use(
+  helmet({
+    //helmet is a security middleware that helps you protect your app by setting various HTTP headers
+    contentSecurityPolicy: false,
+  })
+);
 app.use(morgan("dev")); //log the requests in detail to the console
 
 // apply arcjet rate-limit to all routes
