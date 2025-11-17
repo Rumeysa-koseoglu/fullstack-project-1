@@ -3,7 +3,8 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 //backend API base URL
-const BASE_URL = "http://localhost:3000";
+const BASE_URL =
+  import.meta.env.MODE === "development" ? "http://localhost:3000" : "";
 
 //we create zustand store for product data
 export const useProductStore = create((set, get) => ({
