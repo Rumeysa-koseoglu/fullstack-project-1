@@ -8,6 +8,7 @@ import dotenv from "dotenv"; // reads the .env file
 import productRoutes from "./routes/productRoutes.js"; // get product routes (default export)
 import { sql } from "./config/db.js";
 import { aj } from "./lib/arcjet.js";
+import path from "path";
 
 //load environment variables first (PORT DB credentials ARCJET_KEY etc.)
 dotenv.config(); //puts the contents of the .env into the process.env
@@ -15,6 +16,7 @@ dotenv.config(); //puts the contents of the .env into the process.env
 
 const app = express();
 const PORT = process.env.PORT || 3000; // if there is no PORT in .env, use 3000
+const __dirname = path.resolve();
 
 //--------Global Middlewares----------
 //those are works before all the routes work (order is important)
@@ -63,6 +65,15 @@ app.use(async (req, res, next) => {
 //all routes in productRouters will be used with the base path "/api/products"
 //so while its 'router.get("/")' in the router, it will actually be GET /api/products
 app.use("/api/products", productRoutes);
+
+if (process.env.NODE_ENV === "production") {
+  //server our react app
+  app.use(express.static(path.join(__dirname, "/frontend/dist")));
+
+  app.get(/.*/, (req, res) => {
+    res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+  });
+}
 
 async function initDB() {
   //this function runs an SQL command, in other words
